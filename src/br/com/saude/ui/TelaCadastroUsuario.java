@@ -35,15 +35,25 @@ public class TelaCadastroUsuario extends JFrame {
     }
 
     private void cadastrarUsuario() {
-        String nome = campoNome.getText();
-        String email = campoEmail.getText();
-        String senha = new String(campoSenha.getPassword());
+        String nome = campoNome.getText().trim();
+        String email = campoEmail.getText().trim();
+        String senha = new String(campoSenha.getPassword()).trim();
         String tipo = comboTipo.getSelectedItem().toString();
 
-        Usuario usuario = new Usuario(0, nome, email, senha, tipo);
-        new UsuarioDAO().inserirUsuario(usuario);
+        // Verifica se o e-mail já está cadastrado
+        UsuarioDAO dao = new UsuarioDAO();
+        Usuario existente = dao.buscarPorEmail(email);
 
-        JOptionPane.showMessageDialog(this, "Usuário cadastrado com sucesso!");
+        if (existente != null) {
+            JOptionPane.showMessageDialog(this, "Este usuário já existe!", "Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Se não existir, cadastra
+        Usuario novoUsuario = new Usuario(0, nome, email, senha, tipo);
+        dao.inserirUsuario(novoUsuario);
+
+        JOptionPane.showMessageDialog(this, "Usuário cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 
         campoNome.setText("");
         campoEmail.setText("");

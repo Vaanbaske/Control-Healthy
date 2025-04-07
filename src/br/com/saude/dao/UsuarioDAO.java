@@ -9,11 +9,11 @@ import java.sql.ResultSet;
 
 public class UsuarioDAO {
 
-    // Método para buscar um usuário pelo e-mail
+    // Buscar usuário por e-mail
     public Usuario buscarPorEmail(String email) {
         Usuario usuario = null;
 
-        String sql = "SELECT * FROM usuario WHERE email = ?";
+        String sql = "SELECT * FROM usuarios WHERE email = ?"; // corrigido
 
         try (Connection conexao = Conexao.getConexao();
              PreparedStatement stmt = conexao.prepareStatement(sql)) {
@@ -38,9 +38,17 @@ public class UsuarioDAO {
         return usuario;
     }
 
-    // Método para inserir um novo usuário no banco
-    public void inserirUsuario(Usuario usuario) {
-        String sql = "INSERT INTO usuario (nome, email, senha, tipo) VALUES (?, ?, ?, ?)";
+    // Inserir usuário com verificação de duplicidade
+    public boolean inserirUsuario(Usuario usuario) {
+        // Verifica se já existe um usuário com esse e-mail
+        Usuario existente = buscarPorEmail(usuario.getEmail());
+
+        if (existente != null) {
+            System.out.println("⚠️ Usuário já existe com esse e-mail.");
+            return false;
+        }
+
+        String sql = "INSERT INTO usuarios (nome, email, senha, tipo) VALUES (?, ?, ?, ?)"; // corrigido
 
         try (Connection conn = Conexao.getConexao();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -51,9 +59,11 @@ public class UsuarioDAO {
             stmt.setString(4, usuario.getTipo());
 
             stmt.executeUpdate();
+            return true;
 
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
     }
 }
