@@ -7,7 +7,7 @@ public class Usuario {
     private String senha;
     private String tipo;
 
-    // ✅ Construtor com parâmetros (este estava faltando!)
+    //  Construtor com parâmetros (este estava faltando!)
     public Usuario(int id, String nome, String email, String senha, String tipo) {
         this.id = id;
         this.nome = nome;
@@ -16,10 +16,10 @@ public class Usuario {
         this.tipo = tipo;
     }
 
-    // ✅ Construtor vazio (opcional, mas útil)
+    // Construtor vazio (opcional, mas útil)
     public Usuario() {}
 
-    // ✅ Getters e Setters
+    //  Getters e Setters
     public int getId() {
         return id;
     }

@@ -9,7 +9,7 @@ public class Conexao {
     private static final String USUARIO = "root";
     private static final String SENHA = ""; // Adicione sua senha aqui se necessário
 
-    // 🔥 Renomeamos o método para `getConexao`
+    //  Método para `getConexao`
     public static Connection getConexao() {
         try {
             return DriverManager.getConnection(URL, USUARIO, SENHA);
@@ -20,7 +20,7 @@ public class Conexao {
 
     public static void main(String[] args) {
         // Testando a conexão
-        Connection conexao = getConexao(); // 🔥 Aqui também alteramos para `getConexao`
+        Connection conexao = getConexao(); // Aqui também alteramos para `getConexao`
         if (conexao != null) {
             System.out.println("Conectado com sucesso!");
         }

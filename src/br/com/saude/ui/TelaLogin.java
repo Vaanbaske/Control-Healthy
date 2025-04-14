@@ -9,6 +9,7 @@ public class TelaLogin extends JFrame {
     private JTextField campoEmail;
     private JPasswordField campoSenha;
     private JButton botaoEntrar;
+    private JButton botaoCadastrar;
 
     public TelaLogin() {
         setTitle("Login");
@@ -20,18 +21,20 @@ public class TelaLogin extends JFrame {
         campoEmail = new JTextField();
         campoSenha = new JPasswordField();
         botaoEntrar = new JButton("Entrar");
-
-        // Adicionando componentes na tela
+        botaoCadastrar = new JButton("Cadastrar");
+     // Adicionando componentes na tela
         add(new JLabel("Email:"));
         add(campoEmail);
         add(new JLabel("Senha:"));
         add(campoSenha);
-        add(new JLabel("")); // Espaço vazio para alinhamento
         add(botaoEntrar);
+        add(botaoCadastrar);
 
         // Definindo ação do botão
-        botaoEntrar.addActionListener(e -> autenticarUsuario());
-
+        botaoCadastrar.addActionListener(e -> {
+            dispose(); // Fecha a tela de login
+            new TelaCadastroUsuario(); // Abre a tela de cadastro
+        });
         setVisible(true);
     }
 
@@ -42,12 +45,15 @@ public class TelaLogin extends JFrame {
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         Usuario usuario = usuarioDAO.buscarPorEmail(email);
 
-        if (usuario != null && usuario.getSenha().equals(senha)) {
-            JOptionPane.showMessageDialog(this, "Login realizado com sucesso!");
-            dispose(); // Fecha a tela de login
-            new TelaCadastroPaciente(); // Abre a próxima tela (vamos mudar depois!)
+        if (usuario == null) {
+            JOptionPane.showMessageDialog(this, "Este e-mail não está cadastrado.", "Erro", JOptionPane.ERROR_MESSAGE);
+        } else if (!usuario.getSenha().equals(senha)) {
+            JOptionPane.showMessageDialog(this, "Senha incorreta.", "Erro", JOptionPane.ERROR_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(this, "Email ou senha incorretos.");
+        	JOptionPane.showMessageDialog(this, "Login realizado com sucesso!");
+        	dispose(); // Fecha a tela de login
+        	new TelaInicial(usuario); // chama a nova tela, passando o usuário logado
+
         }
     }
 
