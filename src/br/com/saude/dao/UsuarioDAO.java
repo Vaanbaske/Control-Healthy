@@ -44,7 +44,7 @@ public class UsuarioDAO {
         Usuario existente = buscarPorEmail(usuario.getEmail());
 
         if (existente != null) {
-            System.out.println("⚠️ Usuário já existe com esse e-mail.");
+            System.out.println("Atenção: Usuário já existe com esse e-mail.");
             return false;
         }
 

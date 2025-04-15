@@ -19,7 +19,7 @@ public class Paciente {
         this.telefone = telefone;
     }
 
-    // Construtor vazio
+    // Construtor vazio por medida preventiva
     public Paciente() {}
 
     // Getters e setters de todos os campos:

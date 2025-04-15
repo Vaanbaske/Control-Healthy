@@ -43,7 +43,7 @@ public class PressaoDAO {
         return 0;
     }
 
-    // ✅ NOVO MÉTODO PARA O GRÁFICO
+    //  NOVO MÉTODO PARA O GRÁFICO
     public List<Registro> listarRegistros(int idPaciente) {
         List<Registro> registros = new ArrayList<>();
         String sql = "SELECT data, sistolica, diastolica FROM pressao WHERE id_paciente = ? ORDER BY data";
@@ -70,7 +70,7 @@ public class PressaoDAO {
         return registros;
     }
 
-    // ✅ CLASSE INTERNA USADA PELO GRÁFICO
+    //  CLASSE INTERNA USADA PELO GRÁFICO
     public static class Registro {
         private LocalDate data;
         private int sistolica;

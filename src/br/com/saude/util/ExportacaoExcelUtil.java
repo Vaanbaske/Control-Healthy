@@ -1,6 +1,4 @@
-/*
- * 
- *  Trata-se de um teste para importar tudo pra uma planilha, deu erro e fiquei com dor de cabeça, falo com o prof depois
+//  Trata-se de um teste para importar tudo pra uma planilha, deu erro e fiquei com dor de cabeça, falo com o prof depois
 package br.com.saude.util;
 
 import br.com.saude.dao.PressaoDAO.Registro;
@@ -56,6 +54,5 @@ public class ExportacaoExcelUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+        }
 }
-*/

@@ -16,7 +16,7 @@ public class Usuario {
         this.tipo = tipo;
     }
 
-    // Construtor vazio (opcional, mas útil)
+    // Construtor vazio apenas para prevenção
     public Usuario() {}
 
     //  Getters e Setters

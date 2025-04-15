@@ -14,7 +14,7 @@ public class TelaCadastroUsuario extends JFrame {
     private JButton botaoCadastrar, botaoVoltar;
     private JFrame janelaAnterior;  // guarda a janela que chamou
 
-    // ← Construtor novo que recebe a janela anterior
+    //  Construtor novo que recebe a janela anterior
     public TelaCadastroUsuario(JFrame anterior) {
         this.janelaAnterior = anterior;
 

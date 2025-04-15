@@ -52,7 +52,7 @@ public class TelaDetalhesPaciente extends JFrame {
         ChartPanel chartPanel = new ChartPanel(chart);
         add(chartPanel, BorderLayout.CENTER);
 
-        // Botão exportar
+       // Botão exportar -- aqui ta dando erro pra criar a parte de exportar
         JButton btnExportar = new JButton("Exportar para Excel");
         btnExportar.addActionListener(e -> {
             new ExportacaoExcelUtil().exportarRegistros(paciente.getNome(), registros);
@@ -65,4 +65,4 @@ public class TelaDetalhesPaciente extends JFrame {
 
         setVisible(true);
     }
-}
+} 

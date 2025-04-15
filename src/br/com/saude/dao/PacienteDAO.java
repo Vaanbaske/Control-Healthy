@@ -10,7 +10,7 @@ import java.util.List;
 
 public class PacienteDAO {
 
-    /** Insere um novo paciente, atribuindo-o a um médico (ou null). */
+    // Insere um novo paciente, atribuindo-o a um médico 
     public void inserirPaciente(Paciente paciente) {
         String sql = "INSERT INTO pacientes (nome, idade, endereco, telefone, id_medico) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = Conexao.getConexao();
@@ -32,7 +32,7 @@ public class PacienteDAO {
         }
     }
 
-    /** Retorna todos os pacientes, com o nome do médico responsável (se houver). */
+    // Retorna todos os pacientes, com o nome do médico responsável
     public List<Paciente> listarTodos() {
         List<Paciente> lista = new ArrayList<>();
         String sql = 
@@ -70,7 +70,7 @@ public class PacienteDAO {
         return lista;
     }
 
-    /** Retorna somente os pacientes atribuídos ao médico de id informado. */
+    // Retorna somente os pacientes atribuídos ao médico de id informado. 
     public List<Paciente> listarPorMedico(int idMedico) {
         List<Paciente> lista = new ArrayList<>();
         String sql = 
@@ -100,7 +100,7 @@ public class PacienteDAO {
         return lista;
     }
 
-    /** Exclui um paciente pelo id. */
+    // Exclui um paciente pelo id.
     public void excluirPaciente(int id) {
         String sql = "DELETE FROM pacientes WHERE id = ?";
         try (Connection conn = Conexao.getConexao();
