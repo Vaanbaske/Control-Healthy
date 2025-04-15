@@ -7,7 +7,7 @@ public class Usuario {
     private String senha;
     private String tipo;
 
-    //  Construtor com parâmetros (este estava faltando!)
+    //  Construtor com parâmetros 
     public Usuario(int id, String nome, String email, String senha, String tipo) {
         this.id = id;
         this.nome = nome;

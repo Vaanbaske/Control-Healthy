@@ -1,3 +1,5 @@
+// NÃO MEXE AQUI, É A CONEXÃO (JÁ CORRIGI UM MONTE DE VEZ)
+
 package br.com.saude.util;
 
 import java.sql.Connection;

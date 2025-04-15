@@ -2,39 +2,48 @@ package br.com.saude.ui;
 
 import javax.swing.*;
 import java.awt.*;
+
 import br.com.saude.dao.UsuarioDAO;
 import br.com.saude.model.Usuario;
 
 public class TelaLogin extends JFrame {
+    private static final long serialVersionUID = 1L;
+
     private JTextField campoEmail;
     private JPasswordField campoSenha;
-    private JButton botaoEntrar;
-    private JButton botaoCadastrar;
+    private JButton botaoEntrar, botaoCadastrar, botaoVoltar;
+    private JFrame janelaAnterior;
 
-    public TelaLogin() {
+    public TelaLogin(JFrame anterior) {
+        this.janelaAnterior = anterior;
+
         setTitle("Login");
-        setSize(300, 200);
+        setSize(300, 250);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new GridLayout(3, 2));
+        setLocationRelativeTo(null);
+        setLayout(new GridLayout(4, 2));
 
-        // Criando os componentes
-        campoEmail = new JTextField();
-        campoSenha = new JPasswordField();
-        botaoEntrar = new JButton("Entrar");
+        campoEmail   = new JTextField();
+        campoSenha   = new JPasswordField();
+        botaoEntrar  = new JButton("Entrar");
         botaoCadastrar = new JButton("Cadastrar");
-     // Adicionando componentes na tela
-        add(new JLabel("Email:"));
-        add(campoEmail);
-        add(new JLabel("Senha:"));
-        add(campoSenha);
-        add(botaoEntrar);
-        add(botaoCadastrar);
+        botaoVoltar    = new JButton("← Voltar");
 
-        // Definindo ação do botão
+        add(new JLabel("Email:")); add(campoEmail);
+        add(new JLabel("Senha:")); add(campoSenha);
+        add(botaoEntrar); add(botaoCadastrar);
+        add(new JLabel(""));    add(botaoVoltar);
+
+        botaoEntrar.addActionListener(e -> autenticarUsuario());
         botaoCadastrar.addActionListener(e -> {
-            dispose(); // Fecha a tela de login
-            new TelaCadastroUsuario(); // Abre a tela de cadastro
+            this.dispose();
+            new TelaCadastroUsuario(janelaAnterior);
         });
+        botaoVoltar.addActionListener(e -> {
+            this.dispose();
+            janelaAnterior.setVisible(true);
+        });
+
         setVisible(true);
     }
 
@@ -42,22 +51,15 @@ public class TelaLogin extends JFrame {
         String email = campoEmail.getText();
         String senha = new String(campoSenha.getPassword());
 
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        Usuario usuario = usuarioDAO.buscarPorEmail(email);
-
+        Usuario usuario = new UsuarioDAO().buscarPorEmail(email);
         if (usuario == null) {
-            JOptionPane.showMessageDialog(this, "Este e-mail não está cadastrado.", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "E-mail não cadastrado.", "Erro", JOptionPane.ERROR_MESSAGE);
         } else if (!usuario.getSenha().equals(senha)) {
             JOptionPane.showMessageDialog(this, "Senha incorreta.", "Erro", JOptionPane.ERROR_MESSAGE);
         } else {
-        	JOptionPane.showMessageDialog(this, "Login realizado com sucesso!");
-        	dispose(); // Fecha a tela de login
-        	new TelaInicial(usuario); // chama a nova tela, passando o usuário logado
-
+            JOptionPane.showMessageDialog(this, "Login bem-sucedido!");
+            this.dispose();
+            new TelaInicial(usuario);
         }
-    }
-
-    public static void main(String[] args) {
-        new TelaLogin();
     }
 }

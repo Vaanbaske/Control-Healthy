@@ -5,9 +5,8 @@ import br.com.saude.dao.PacienteDAO;
 import br.com.saude.model.Paciente;
 import java.awt.GridLayout;
 
-
 public class TelaCadastroPaciente extends JFrame {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
     private JTextField campoNome, campoIdade, campoEndereco, campoTelefone;
     private JButton botaoSalvar;
 
@@ -16,22 +15,20 @@ public class TelaCadastroPaciente extends JFrame {
         setSize(400, 250);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridLayout(5, 2));
+        setLocationRelativeTo(null);
 
-        // Criando componentes
-        campoNome = new JTextField();
-        campoIdade = new JTextField();
+        campoNome     = new JTextField();
+        campoIdade    = new JTextField();
         campoEndereco = new JTextField();
         campoTelefone = new JTextField();
-        botaoSalvar = new JButton("Salvar");
+        botaoSalvar   = new JButton("Salvar");
 
-        // Adicionando componentes na tela
-        add(new JLabel("Nome:")); add(campoNome);
-        add(new JLabel("Idade:")); add(campoIdade);
+        add(new JLabel("Nome:"));     add(campoNome);
+        add(new JLabel("Idade:"));    add(campoIdade);
         add(new JLabel("Endereço:")); add(campoEndereco);
         add(new JLabel("Telefone:")); add(campoTelefone);
-        add(new JLabel("")); add(botaoSalvar); // Espaço vazio para alinhar botão
+        add(new JLabel(""));          add(botaoSalvar);
 
-        // Ação do botão
         botaoSalvar.addActionListener(e -> salvarPaciente());
 
         setVisible(true);
@@ -39,23 +36,19 @@ public class TelaCadastroPaciente extends JFrame {
 
     private void salvarPaciente() {
         try {
-            String nome = campoNome.getText();
-            int idade = Integer.parseInt(campoIdade.getText());
+            String nome     = campoNome.getText();
+            int idade       = Integer.parseInt(campoIdade.getText());
             String endereco = campoEndereco.getText();
             String telefone = campoTelefone.getText();
 
-            // Criando paciente e salvando no banco
             Paciente paciente = new Paciente(0, nome, idade, endereco, telefone);
             new PacienteDAO().inserirPaciente(paciente);
 
             JOptionPane.showMessageDialog(this, "Paciente cadastrado com sucesso!");
-
-            // Limpando campos
             campoNome.setText("");
             campoIdade.setText("");
             campoEndereco.setText("");
             campoTelefone.setText("");
-
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Erro ao cadastrar: " + ex.getMessage());
         }
