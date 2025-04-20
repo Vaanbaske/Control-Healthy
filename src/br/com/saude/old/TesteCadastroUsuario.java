@@ -1,4 +1,4 @@
-package br.com.saude.testes;
+package br.com.saude.old;
 
 import br.com.saude.dao.UsuarioDAO;
 import br.com.saude.model.Usuario;

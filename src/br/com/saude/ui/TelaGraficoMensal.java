@@ -9,37 +9,47 @@ import org.jfree.data.category.DefaultCategoryDataset;
 import javax.swing.*;
 import java.awt.*;
 import java.time.format.DateTimeFormatter;
+import java.util.*;
 import java.util.List;
 
-public class TelaGraficoDiario extends JFrame {
+public class TelaGraficoMensal extends JFrame {
     private Paciente paciente;
 
-    public TelaGraficoDiario(Paciente paciente) {
+    public TelaGraficoMensal(Paciente paciente) {
         this.paciente = paciente;
 
-        setTitle("Gráfico Diário de Pressão - " + paciente.getNome());
+        setTitle("Gráfico Mensal - " + paciente.getNome());
         setSize(800, 600);
-        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        JLabel titulo = new JLabel("Pressão Arterial (Diário)", SwingConstants.CENTER);
+        JLabel titulo = new JLabel("Pressão Arterial (Média Mensal)", SwingConstants.CENTER);
         titulo.setFont(new Font("Arial", Font.BOLD, 18));
         add(titulo, BorderLayout.NORTH);
 
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         List<Registro> registros = new PressaoDAO().listarRegistros(paciente.getId());
-        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM");
+
+        Map<String, List<Registro>> agrupadoPorMes = new TreeMap<>();
+        DateTimeFormatter mesAnoFormat = DateTimeFormatter.ofPattern("MM/yyyy");
 
         for (Registro r : registros) {
-            String data = r.getData().format(fmt);
-            dataset.addValue(r.getSistolica(), "Sistólica", data);
-            dataset.addValue(r.getDiastolica(), "Diastólica", data);
+            String mesAno = r.getData().format(mesAnoFormat);
+            agrupadoPorMes.computeIfAbsent(mesAno, k -> new ArrayList<>()).add(r);
+        }
+
+        for (String mes : agrupadoPorMes.keySet()) {
+            List<Registro> lista = agrupadoPorMes.get(mes);
+            double sist = lista.stream().mapToInt(Registro::getSistolica).average().orElse(0);
+            double dias = lista.stream().mapToInt(Registro::getDiastolica).average().orElse(0);
+            dataset.addValue(sist, "Sistólica", mes);
+            dataset.addValue(dias, "Diastólica", mes);
         }
 
         JFreeChart chart = ChartFactory.createLineChart(
-                "Evolução da Pressão (Diária)",
-                "Dia",
+                "Evolução da Pressão - Mensal",
+                "Mês",
                 "Pressão (mmHg)",
                 dataset
         );

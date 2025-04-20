@@ -1,6 +1,7 @@
-package br.com.saude.ui;
+package br.com.saude.old;
 
 import br.com.saude.model.Paciente;
+import br.com.saude.ui.TelaSelecionaTipoGrafico;
 
 import javax.swing.*;
 import java.awt.*;

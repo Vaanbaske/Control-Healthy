@@ -1,6 +1,7 @@
 package br.com.saude.ui;
 
 import br.com.saude.model.Paciente;
+import br.com.saude.old.TelaGraficoMenu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,17 +29,17 @@ public class TelaSelecionaTipoGrafico extends JFrame {
 
         btnDiario.addActionListener(e -> {
             dispose();
-            new TelaGraficoDiario(paciente); // ← ainda vamos criar
+            new TelaGraficoDiario(paciente); //  ainda vamos criar - normal dar erro
         });
 
         btnSemanal.addActionListener(e -> {
             dispose();
-            new TelaGraficoSemanal(paciente); // ← ainda vamos criar
+            new TelaGraficoSemanal(paciente); // ainda vamos criar - normal dar erro
         });
 
         btnMensal.addActionListener(e -> {
             dispose();
-            new TelaGraficoMensal(paciente); // ← ainda vamos criar
+            new TelaGraficoMensal(paciente); // ainda vamos criar - normal dar erro
         });
 
         btnVoltar.addActionListener(e -> {

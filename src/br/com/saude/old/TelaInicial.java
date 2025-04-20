@@ -1,4 +1,4 @@
-package br.com.saude.ui;
+package br.com.saude.old;
 
 import br.com.saude.model.Usuario;
 
@@ -22,7 +22,7 @@ public class TelaInicial extends JFrame {
         JPanel painelBotoes = new JPanel();
         painelBotoes.setLayout(new GridLayout(0, 1, 10, 10));
 
-        if (usuario.getTipo().equalsIgnoreCase("medico")) {
+        if (usuario.getTipo().equalsIgnoreCase("medico")) { // conferir se ta atribuido ou não
             JButton btnPacientes = new JButton("Ver pacientes");
             JButton btnGraficos = new JButton("Gráficos por paciente");
             JButton btnExportar = new JButton("Exportar dados");
@@ -35,7 +35,7 @@ public class TelaInicial extends JFrame {
             painelBotoes.add(btnGraficos);
             painelBotoes.add(btnExportar);
 
-        } else if (usuario.getTipo().equalsIgnoreCase("paciente")) {
+        } else if (usuario.getTipo().equalsIgnoreCase("paciente")) { // fecha a primeira cadeia
             JButton btnInfo = new JButton("Minhas informações");
             JButton btnGrafico = new JButton("Gráfico da pressão");
 

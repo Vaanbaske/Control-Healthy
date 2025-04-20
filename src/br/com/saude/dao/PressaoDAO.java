@@ -43,7 +43,7 @@ public class PressaoDAO {
         return 0;
     }
 
-    //  NOVO MÉTODO PARA O GRÁFICO
+    //  NOVO MÉTODO PARA O GRÁFICO - O anterior deu erro
     public List<Registro> listarRegistros(int idPaciente) {
         List<Registro> registros = new ArrayList<>();
         String sql = "SELECT data, sistolica, diastolica FROM pressao WHERE id_paciente = ? ORDER BY data";

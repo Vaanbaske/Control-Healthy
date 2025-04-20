@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" path="src"/>
+	<classpathentry including="**/*.java" kind="src" output="target/classes" path="src">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="lib/jfreechart-1.0.19/jfreechart-1.0.19/lib/jcommon-1.0.23.jar"/>
 	<classpathentry kind="lib" path="lib/jfreechart-1.0.19/jfreechart-1.0.19/lib/jfreechart-1.0.19.jar"/>
 	<classpathentry kind="lib" path="lib/jfreechart-1.0.19/jfreechart-1.0.19/lib/swtgraphics2d.jar"/>
@@ -14,9 +19,9 @@
 	<classpathentry kind="lib" path="lib/jfreechart-1.0.19/jfreechart-1.0.19/lib/jfreechart-1.0.19-experimental.jar"/>
 	<classpathentry kind="lib" path="lib/jfreechart-1.0.19/jfreechart-1.0.19/lib/jfreechart-1.0.19-swt.jar"/>
 	<classpathentry kind="lib" path="lib/jfreechart-1.0.19/jfreechart-1.0.19/jfreechart-1.0.19-demo.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk-21">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-21">
 		<attributes>
-			<attribute name="module" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/bcpkix-jdk15on-1.70.jar"/>
@@ -47,5 +52,12 @@
 	<classpathentry kind="lib" path="lib/xmlbeans-5.1.1.jar"/>
 	<classpathentry kind="lib" path="lib/xmlgraphics-commons-2.6.jar"/>
 	<classpathentry kind="lib" path="lib/xmlsec-3.0.0.jar"/>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="lib" path="lib/excel/log4j-api-2.24.3.jar"/>
+	<classpathentry kind="lib" path="lib/excel/log4j-core-2.24.3.jar"/>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="target/classes"/>
 </classpath>

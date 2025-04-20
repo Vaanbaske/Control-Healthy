@@ -13,26 +13,28 @@ import java.awt.*;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
-public class TelaDetalhesPaciente extends JFrame {
+public class TelaGraficoDiario extends JFrame {
+
     private Paciente paciente;
 
-    public TelaDetalhesPaciente(Paciente paciente) {
+    public TelaGraficoDiario(Paciente paciente) {
         this.paciente = paciente;
 
-        setTitle("Detalhes de " + paciente.getNome());
+        setTitle("Gráfico Diário de Pressão - " + paciente.getNome());
         setSize(800, 600);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        JLabel titulo = new JLabel("Paciente: " + paciente.getNome(), SwingConstants.CENTER);
+        // Título
+        JLabel titulo = new JLabel("Pressão Arterial (Diário)", SwingConstants.CENTER);
         titulo.setFont(new Font("Arial", Font.BOLD, 18));
         add(titulo, BorderLayout.NORTH);
 
-        // Gráfico
+        // Dados e gráfico
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         List<Registro> registros = new PressaoDAO().listarRegistros(paciente.getId());
-        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM");
 
         for (Registro r : registros) {
             String dataFormatada = r.getData().format(fmt);
@@ -41,7 +43,7 @@ public class TelaDetalhesPaciente extends JFrame {
         }
 
         JFreeChart chart = ChartFactory.createLineChart(
-            "Histórico de Pressão Arterial",
+            "Evolução da Pressão Arterial - Diário",
             "Data",
             "Pressão (mmHg)",
             dataset
@@ -50,21 +52,14 @@ public class TelaDetalhesPaciente extends JFrame {
         ChartPanel chartPanel = new ChartPanel(chart);
         add(chartPanel, BorderLayout.CENTER);
 
-        // Botões
+        // Botão voltar
         JButton btnVoltar = new JButton("← Voltar");
         btnVoltar.addActionListener(e -> {
             dispose();
-            new TelaInicialMedico(new br.com.saude.model.Usuario()); // ou redirecionar para a tela anterior do login
-        });
-
-        JButton btnExportar = new JButton("Exportar para Excel");
-        btnExportar.addActionListener(e -> {
-            new br.com.saude.util.ExportacaoExcelUtil().exportarRegistros(paciente.getNome(), registros);
-            JOptionPane.showMessageDialog(this, "Exportado com sucesso!");
+            new TelaSelecionaTipoGrafico(paciente);
         });
 
         JPanel painelSul = new JPanel();
-        painelSul.add(btnExportar);
         painelSul.add(btnVoltar);
         add(painelSul, BorderLayout.SOUTH);
 
