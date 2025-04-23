@@ -26,14 +26,14 @@ public class TelaEscolhaLogin extends JFrame {
         botaoMedico.setBackground(Color.decode("#ADD8E6"));
         botaoMedico.addActionListener(e -> {
             setVisible(false);
-            new TelaLogin(this);
+            new TelaLogin();
         });
 
         JButton botaoPaciente = new JButton("Login Paciente");
         botaoPaciente.setBackground(Color.decode("#FFCCCC"));
         botaoPaciente.addActionListener(e -> {
             setVisible(false);
-            new TelaLogin(this);
+            new TelaLogin();
         });
 
         JButton botaoCadastro = new JButton("Cadastro");

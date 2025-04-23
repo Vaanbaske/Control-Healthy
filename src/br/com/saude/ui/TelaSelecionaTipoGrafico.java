@@ -1,6 +1,8 @@
 package br.com.saude.ui;
 
+import br.com.saude.dao.PressaoDAO;
 import br.com.saude.model.Paciente;
+import br.com.saude.model.Usuario;
 import br.com.saude.old.TelaGraficoMenu;
 
 import javax.swing.*;
@@ -9,9 +11,22 @@ import java.awt.*;
 public class TelaSelecionaTipoGrafico extends JFrame {
     private Paciente paciente;
 
+    // Construtor que aceita Paciente
     public TelaSelecionaTipoGrafico(Paciente paciente) {
         this.paciente = paciente;
+        initComponents();
+    }
 
+    // Construtor que aceita Usuario (para admin, por exemplo)
+    public TelaSelecionaTipoGrafico(Usuario usuario) {
+        this.paciente = new Paciente();
+        paciente.setId(usuario.getId());
+        paciente.setNome(usuario.getNome());
+        // Caso deseje adicionar mais atributos do usuário
+        initComponents();
+    }
+
+    private void initComponents() {
         setTitle("Escolher Tipo de Gráfico");
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -29,22 +44,22 @@ public class TelaSelecionaTipoGrafico extends JFrame {
 
         btnDiario.addActionListener(e -> {
             dispose();
-            new TelaGraficoDiario(paciente); //  ainda vamos criar - normal dar erro
+            new TelaGraficoDiario(paciente);
         });
 
         btnSemanal.addActionListener(e -> {
             dispose();
-            new TelaGraficoSemanal(paciente); // ainda vamos criar - normal dar erro
+            new TelaGraficoSemanal(paciente);
         });
 
         btnMensal.addActionListener(e -> {
             dispose();
-            new TelaGraficoMensal(paciente); // ainda vamos criar - normal dar erro
+            new TelaGraficoMensal(paciente);
         });
 
         btnVoltar.addActionListener(e -> {
             dispose();
-            new TelaGraficoMenu(paciente);
+            new TelaGraficoMenu(paciente); // ou pode voltar para alguma tela anterior
         });
 
         add(btnDiario);

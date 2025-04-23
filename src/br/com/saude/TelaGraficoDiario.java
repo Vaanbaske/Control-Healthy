@@ -1,4 +1,6 @@
-package br.com.saude.ui;
+package br.com.saude;
+import br.com.saude.ui.TelaSelecionaTipoGrafico;
+
 
 import br.com.saude.dao.PressaoDAO;
 import br.com.saude.dao.PressaoDAO.Registro;

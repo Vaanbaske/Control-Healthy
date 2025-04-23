@@ -35,7 +35,7 @@ public class PacienteDAO {
     // Retorna todos os pacientes, com o nome do médico responsável
     public List<Paciente> listarTodos() {
         List<Paciente> lista = new ArrayList<>();
-        String sql = 
+        String sql =
             "SELECT p.id, p.nome, p.idade, p.endereco, p.telefone, " +
             "       u.id AS id_medico, u.nome AS nome_medico " +
             "  FROM pacientes p " +
@@ -73,7 +73,7 @@ public class PacienteDAO {
     // Retorna somente os pacientes atribuídos ao médico de id informado. 
     public List<Paciente> listarPorMedico(int idMedico) {
         List<Paciente> lista = new ArrayList<>();
-        String sql = 
+        String sql =
             "SELECT id, nome, idade, endereco, telefone " +
             "  FROM pacientes " +
             " WHERE id_medico = ?";
@@ -110,6 +110,49 @@ public class PacienteDAO {
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
+        }
+    }
+
+    // ✅ NOVO: Lista pacientes que ainda NÃO têm médico atribuído
+    public List<Paciente> listarSemMedico() {
+        List<Paciente> lista = new ArrayList<>();
+        String sql = "SELECT * FROM pacientes WHERE id_medico IS NULL";
+
+        try (Connection conn = Conexao.getConexao();
+             PreparedStatement stmt = conn.prepareStatement(sql);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                Paciente p = new Paciente(
+                    rs.getInt("id"),
+                    rs.getString("nome"),
+                    rs.getInt("idade"),
+                    rs.getString("endereco"),
+                    rs.getString("telefone")
+                );
+                lista.add(p);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return lista;
+    }
+
+    // ✅ NOVO: Atribui um médico a um paciente
+    public boolean atribuirMedico(int idPaciente, int idMedico) {
+        String sql = "UPDATE pacientes SET id_medico = ? WHERE id = ?";
+
+        try (Connection conn = Conexao.getConexao();
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+
+            stmt.setInt(1, idMedico);
+            stmt.setInt(2, idPaciente);
+            return stmt.executeUpdate() > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 }
