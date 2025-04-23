@@ -1,17 +1,19 @@
 package br.com.saude.ui;
 
+import br.com.saude.model.Paciente;
 import br.com.saude.dao.PressaoDAO;
 import br.com.saude.dao.PressaoDAO.Registro;
-import br.com.saude.model.Paciente;
-import org.jfree.chart.*;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
 import org.jfree.data.category.DefaultCategoryDataset;
-
 import javax.swing.*;
 import java.awt.*;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class TelaGraficoDiario extends JFrame {
+
     private Paciente paciente;
 
     public TelaGraficoDiario(Paciente paciente) {
@@ -27,34 +29,34 @@ public class TelaGraficoDiario extends JFrame {
         titulo.setFont(new Font("Arial", Font.BOLD, 18));
         add(titulo, BorderLayout.NORTH);
 
+        // montar dataset diário
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         List<Registro> registros = new PressaoDAO().listarRegistros(paciente.getId());
-        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM");
+        DateTimeFormatter fmt = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
         for (Registro r : registros) {
-            String data = r.getData().format(fmt);
-            dataset.addValue(r.getSistolica(), "Sistólica", data);
-            dataset.addValue(r.getDiastolica(), "Diastólica", data);
+            String dia = r.getData().format(fmt);
+            dataset.addValue(r.getSistolica(), "Sistólica", dia);
+            dataset.addValue(r.getDiastolica(), "Diastólica", dia);
         }
 
         JFreeChart chart = ChartFactory.createLineChart(
-                "Evolução da Pressão (Diária)",
-                "Dia",
-                "Pressão (mmHg)",
-                dataset
+            "Evolução da Pressão (dia a dia)",
+            "Dia",
+            "Pressão (mmHg)",
+            dataset
         );
-
         add(new ChartPanel(chart), BorderLayout.CENTER);
 
-        JButton btnVoltar = new JButton("← Voltar");
+        // painel de botões
+        JPanel botoes = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        JButton btnVoltar = new JButton("← Selecionar Tipo");
         btnVoltar.addActionListener(e -> {
             dispose();
             new TelaSelecionaTipoGrafico(paciente);
         });
-
-        JPanel painelSul = new JPanel();
-        painelSul.add(btnVoltar);
-        add(painelSul, BorderLayout.SOUTH);
+        botoes.add(btnVoltar);
+        add(botoes, BorderLayout.SOUTH);
 
         setVisible(true);
     }

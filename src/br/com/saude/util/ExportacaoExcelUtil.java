@@ -1,4 +1,3 @@
-// deu certo! 
 package br.com.saude.util;
 
 import br.com.saude.dao.PressaoDAO.Registro;
@@ -41,10 +40,10 @@ public class ExportacaoExcelUtil {
             row.createCell(2).setCellValue(r.getDiastolica());
         }
 
-        // Autosize colunas
-        for (int i = 0; i < 3; i++) {
-            sheet.autoSizeColumn(i);
-        }
+        // Comentado para evitar erro com bibliotecas antigas
+        // for (int i = 0; i < 3; i++) {
+        //     sheet.autoSizeColumn(i);
+        // }
 
         // Caminho e salvamento
         String fileName = "Registros_" + nomePaciente.replaceAll("\\s+", "_") + ".xlsx";
@@ -54,5 +53,5 @@ public class ExportacaoExcelUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        }
+    }
 }

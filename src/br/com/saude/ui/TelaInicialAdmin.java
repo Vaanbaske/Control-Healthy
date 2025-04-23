@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 // src/br/com/saude/ui/TelaInicialAdmin.java
+=======
+>>>>>>> 733c997 (Telas finais adicionadas)
 package br.com.saude.ui;
 
 import br.com.saude.model.Usuario;

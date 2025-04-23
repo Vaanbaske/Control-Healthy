@@ -24,19 +24,19 @@ public class TelaInicialMedico extends JFrame {
     public TelaInicialMedico(Usuario medicoLogado) {
         this.medicoLogado = medicoLogado;
 
-        // ── Configuração da janela ───────────────────────────────────────────
+        // Configuração da janela
         setTitle("Painel do Médico: " + medicoLogado.getNome());
         setSize(900, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
 
-        // ── Título ───────────────────────────────────────────────────────────
+        // Título
         JLabel titulo = new JLabel("Painel do Médico: " + medicoLogado.getNome(), SwingConstants.CENTER);
         titulo.setFont(new Font("Arial", Font.BOLD, 20));
         add(titulo, BorderLayout.NORTH);
 
-        // ── Painel central com 2 tabelas ──────────────────────────────────────
+        // Painel central com 2 tabelas
         JPanel painelCentral = new JPanel(new GridLayout(2, 1, 0, 10));
 
         // 1) "Todos os Pacientes"
@@ -51,7 +51,7 @@ public class TelaInicialMedico extends JFrame {
         scrollMeus.setBorder(BorderFactory.createTitledBorder("Seus Pacientes (clique duplo para visualizar)"));
         preencherTabelaMeus();
 
-        // evento de duplo‑clique já existente
+        // evento de clique duplo
         tabelaMeusPacientes.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() == 2 && tabelaMeusPacientes.getSelectedRow() != -1) {
@@ -64,35 +64,33 @@ public class TelaInicialMedico extends JFrame {
         painelCentral.add(scrollMeus);
         add(painelCentral, BorderLayout.CENTER);
 
-        // ── Painel de botões na parte inferior ────────────────────────────────
+        // Painel de botões inferior
         JPanel painelSul = new JPanel(new FlowLayout(FlowLayout.CENTER, 20, 10));
 
-        // Botão "Gerar Gráfico"
         JButton btnGerarGrafico = new JButton("Gerar Gráfico");
         btnGerarGrafico.addActionListener(e -> gerarGraficoParaPacienteSelecionado());
 
-        // Botão "Exportar para Excel"
         JButton btnExportar = new JButton("Exportar para Excel");
         btnExportar.addActionListener(e -> exportarDadosSelecionado());
 
-        // Botão "Deslogar"
+        JButton btnAlterarSenha = new JButton("Alterar Senha");
+        btnAlterarSenha.addActionListener(e -> new TelaAlterarSenha(medicoLogado));
+
         JButton btnDeslogar = new JButton("Deslogar");
         btnDeslogar.addActionListener(e -> {
-            dispose();                        // fecha esta janela
-            new TelaEscolhaLogin();          // volta para a tela inicial de login
+            dispose();
+            new TelaEscolhaLogin();
         });
 
-        // adiciona ao painel
         painelSul.add(btnGerarGrafico);
         painelSul.add(btnExportar);
+        painelSul.add(btnAlterarSenha);
         painelSul.add(btnDeslogar);
-
         add(painelSul, BorderLayout.SOUTH);
 
         setVisible(true);
     }
 
-    // ── Preenche a tabela "Todos os Pacientes" ─────────────────────────────
     private void preencherTabelaTodos() {
         String[] colunas = {"Nome do Paciente", "Médico Responsável"};
         DefaultTableModel model = new DefaultTableModel(colunas, 0);
@@ -104,7 +102,6 @@ public class TelaInicialMedico extends JFrame {
         tabelaTodos.setModel(model);
     }
 
-    // ── Preenche a tabela "Seus Pacientes" ────────────────────────────────
     private void preencherTabelaMeus() {
         String[] colunas = {"ID", "Nome", "Endereço", "Média Sistólica", "Média Diastólica"};
         DefaultTableModel model = new DefaultTableModel(colunas, 0);
@@ -123,7 +120,6 @@ public class TelaInicialMedico extends JFrame {
         tabelaMeusPacientes.setModel(model);
     }
 
-    // ── Abre a tela de seleção de tipo de gráfico para o paciente selecionado ──
     private void gerarGraficoParaPacienteSelecionado() {
         int linha = tabelaMeusPacientes.getSelectedRow();
         if (linha == -1) {
@@ -138,7 +134,6 @@ public class TelaInicialMedico extends JFrame {
         new TelaSelecionaTipoGrafico(p);
     }
 
-    // ── Exporta para Excel os registros do paciente selecionado ─────────────
     private void exportarDadosSelecionado() {
         int linha = tabelaMeusPacientes.getSelectedRow();
         if (linha == -1) {

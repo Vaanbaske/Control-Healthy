@@ -11,18 +11,30 @@ import java.awt.*;
 public class TelaSelecionaTipoGrafico extends JFrame {
     private Paciente paciente;
 
+<<<<<<< HEAD
     // Construtor que aceita Paciente
+=======
+    // Construtor original
+>>>>>>> 733c997 (Telas finais adicionadas)
     public TelaSelecionaTipoGrafico(Paciente paciente) {
         this.paciente = paciente;
         initComponents();
     }
 
+<<<<<<< HEAD
     // Construtor que aceita Usuario (para admin, por exemplo)
+=======
+    // NOVO CONSTRUTOR que aceita Usuario
+>>>>>>> 733c997 (Telas finais adicionadas)
     public TelaSelecionaTipoGrafico(Usuario usuario) {
         this.paciente = new Paciente();
         paciente.setId(usuario.getId());
         paciente.setNome(usuario.getNome());
+<<<<<<< HEAD
         // Caso deseje adicionar mais atributos do usuário
+=======
+        // preencha mais dados se necessário
+>>>>>>> 733c997 (Telas finais adicionadas)
         initComponents();
     }
 
@@ -44,7 +56,11 @@ public class TelaSelecionaTipoGrafico extends JFrame {
 
         btnDiario.addActionListener(e -> {
             dispose();
+<<<<<<< HEAD
             new TelaGraficoDiario(paciente);
+=======
+            new TelaGraficoDiario(paciente); // precisa estar implementada
+>>>>>>> 733c997 (Telas finais adicionadas)
         });
 
         btnSemanal.addActionListener(e -> {

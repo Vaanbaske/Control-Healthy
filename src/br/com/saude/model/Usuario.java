@@ -6,8 +6,13 @@ public class Usuario {
     private String email;
     private String senha;
     private String tipo;
+    private String endereco;
+    private String telefone;
 
+<<<<<<< HEAD
     // ✅ Construtor com parâmetros (este estava faltando!)
+=======
+>>>>>>> 733c997 (Telas finais adicionadas)
     public Usuario(int id, String nome, String email, String senha, String tipo) {
         this.id = id;
         this.nome = nome;
@@ -16,10 +21,15 @@ public class Usuario {
         this.tipo = tipo;
     }
 
+<<<<<<< HEAD
     // ✅ Construtor vazio (opcional, mas útil)
     public Usuario() {}
 
     // ✅ Getters e Setters
+=======
+    public Usuario() {}
+
+>>>>>>> 733c997 (Telas finais adicionadas)
     public int getId() {
         return id;
     }
@@ -59,4 +69,23 @@ public class Usuario {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
+<<<<<<< HEAD
+=======
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+>>>>>>> 733c997 (Telas finais adicionadas)
 }
