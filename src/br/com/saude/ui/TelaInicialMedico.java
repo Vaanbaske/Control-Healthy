@@ -81,11 +81,17 @@ public class TelaInicialMedico extends JFrame {
             dispose();
             new TelaEscolhaLogin();
         });
+        JButton btnVoltarMenu = new JButton("Menu Inicial");
+        btnVoltarMenu.addActionListener(e -> {
+            dispose();
+            new TelaEscolhaLogin();
+        });
 
         painelSul.add(btnGerarGrafico);
         painelSul.add(btnExportar);
-        painelSul.add(btnAlterarSenha);
         painelSul.add(btnDeslogar);
+        painelSul.add(btnVoltarMenu);
+        painelSul.add(btnAlterarSenha);
         add(painelSul, BorderLayout.SOUTH);
 
         setVisible(true);

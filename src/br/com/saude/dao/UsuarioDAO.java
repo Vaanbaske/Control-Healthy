@@ -68,7 +68,7 @@ public class UsuarioDAO {
         }
     }
 
-    // 🔍 NOVO: Listar usuários por tipo (ex: "medico" ou "paciente")
+    //  NOVO: Listar usuários por tipo (ex: "medico" ou "paciente")
     public List<Usuario> listarPorTipo(String tipo) {
         List<Usuario> lista = new ArrayList<>();
         String sql = "SELECT * FROM usuarios WHERE tipo = ?";

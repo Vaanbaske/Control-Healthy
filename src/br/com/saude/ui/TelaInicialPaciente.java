@@ -79,10 +79,17 @@ public class TelaInicialPaciente extends JFrame {
             new TelaEscolhaLogin();
         });
 
+        JButton btnVoltarMenu = new JButton("Menu Inicial");
+        btnVoltarMenu.addActionListener(e -> {
+            dispose();
+            new TelaEscolhaLogin();
+        });
+
         rodape.add(btnGrafico);
         rodape.add(btnExportar);
-        rodape.add(btnAlterarSenha);
         rodape.add(btnDeslogar);
+        rodape.add(btnVoltarMenu);
+        rodape.add(btnAlterarSenha);
         add(rodape, BorderLayout.SOUTH);
 
         setVisible(true);

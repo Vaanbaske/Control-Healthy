@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-// src/br/com/saude/ui/TelaInicialAdmin.java
-=======
->>>>>>> 733c997 (Telas finais adicionadas)
 package br.com.saude.ui;
 
 import br.com.saude.model.Usuario;
@@ -36,6 +32,14 @@ public class TelaInicialAdmin extends JFrame {
         JButton btnGerarGrafico        = new JButton("Gerar Gráfico de Paciente");
         JButton btnInserirPressao      = new JButton("Inserir Dados de Pressão");
         JButton btnSair                = new JButton("Sair");
+        JButton btnVoltarMenu = new JButton("Menu Inicial");
+
+        btnVoltarMenu.addActionListener(e -> {
+            dispose();
+            new TelaEscolhaLogin();
+        });
+        painelCentral.add(btnVoltarMenu);
+
 
         btnListarMedicos.addActionListener(e -> {
             dispose();

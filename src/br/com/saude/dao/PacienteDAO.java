@@ -113,7 +113,7 @@ public class PacienteDAO {
         }
     }
 
-    // ✅ NOVO: Lista pacientes que ainda NÃO têm médico atribuído
+    //  NOVO: Lista pacientes que ainda NÃO têm médico atribuído
     public List<Paciente> listarSemMedico() {
         List<Paciente> lista = new ArrayList<>();
         String sql = "SELECT * FROM pacientes WHERE id_medico IS NULL";
@@ -139,7 +139,7 @@ public class PacienteDAO {
         return lista;
     }
 
-    // ✅ NOVO: Atribui um médico a um paciente
+    // NOVO: Atribui um médico a um paciente
     public boolean atribuirMedico(int idPaciente, int idMedico) {
         String sql = "UPDATE pacientes SET id_medico = ? WHERE id = ?";
 

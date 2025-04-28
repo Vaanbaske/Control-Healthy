@@ -9,10 +9,7 @@ public class Usuario {
     private String endereco;
     private String telefone;
 
-<<<<<<< HEAD
-    // ✅ Construtor com parâmetros (este estava faltando!)
-=======
->>>>>>> 733c997 (Telas finais adicionadas)
+    //  Construtor com parâmetros (este estava faltando!)
     public Usuario(int id, String nome, String email, String senha, String tipo) {
         this.id = id;
         this.nome = nome;
@@ -21,15 +18,11 @@ public class Usuario {
         this.tipo = tipo;
     }
 
-<<<<<<< HEAD
-    // ✅ Construtor vazio (opcional, mas útil)
+    //  Construtor vazio (opcional, mas útil)
     public Usuario() {}
 
-    // ✅ Getters e Setters
-=======
-    public Usuario() {}
-
->>>>>>> 733c997 (Telas finais adicionadas)
+    // Getters e Setters
+    
     public int getId() {
         return id;
     }
@@ -69,8 +62,6 @@ public class Usuario {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-<<<<<<< HEAD
-=======
 
     public String getEndereco() {
         return endereco;
@@ -87,5 +78,9 @@ public class Usuario {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
->>>>>>> 733c997 (Telas finais adicionadas)
+    @Override
+    public String toString() {
+        return nome;
+    }
+
 }

@@ -41,4 +41,9 @@ public class Paciente {
     // Estes são os que faltavam:
     public Usuario getMedico() { return medico; }
     public void setMedico(Usuario medico) { this.medico = medico; }
+    @Override
+    public String toString() {
+        return nome;
+    }
+
 }
