@@ -16,8 +16,7 @@ public class TelaLogin extends JFrame {
         setSize(300, 200);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null); // Centralizar na tela
-        setLayout(new GridLayout(4, 2, 10, 10)); // ATENÇÃO: aumentei para 4 linhas!
-
+        setLayout(new GridLayout(4, 2, 10, 10)); 
         campoEmail = new JTextField();
         campoSenha = new JPasswordField();
         botaoEntrar = new JButton("Entrar");

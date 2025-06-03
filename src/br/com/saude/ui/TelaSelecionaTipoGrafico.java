@@ -18,14 +18,12 @@ public class TelaSelecionaTipoGrafico extends JFrame {
         initComponents();
     }
 
-    // Construtor que aceita Usuario (para admin, por exemplo)
     // NOVO CONSTRUTOR que aceita Usuario
     public TelaSelecionaTipoGrafico(Usuario usuario) {
         this.paciente = new Paciente();
         paciente.setId(usuario.getId());
         paciente.setNome(usuario.getNome());
         // Caso deseje adicionar mais atributos do usuário
-        // preencha mais dados se necessário
         initComponents();
     }
 

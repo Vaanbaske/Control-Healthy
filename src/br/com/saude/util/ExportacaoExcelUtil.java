@@ -44,7 +44,6 @@ public class ExportacaoExcelUtil {
         // for (int i = 0; i < 3; i++) {
         //     sheet.autoSizeColumn(i);
         // }
-
         // Caminho e salvamento
         String fileName = "Registros_" + nomePaciente.replaceAll("\\s+", "_") + ".xlsx";
         try (FileOutputStream out = new FileOutputStream(fileName)) {

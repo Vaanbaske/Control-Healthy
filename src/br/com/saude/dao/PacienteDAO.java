@@ -113,7 +113,7 @@ public class PacienteDAO {
         }
     }
 
-    //  NOVO: Lista pacientes que ainda NÃO têm médico atribuído
+    // NOVO: Lista pacientes que ainda NÃO têm médico atribuído
     public List<Paciente> listarSemMedico() {
         List<Paciente> lista = new ArrayList<>();
         String sql = "SELECT * FROM pacientes WHERE id_medico IS NULL";
